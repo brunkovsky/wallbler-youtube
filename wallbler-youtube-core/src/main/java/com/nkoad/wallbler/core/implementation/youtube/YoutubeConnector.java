@@ -36,10 +36,10 @@ public class YoutubeConnector extends Connector<YoutubeValidator> {
                     .setType("video")// Restrict the search results to only include videos. See: https://developers.google.com/youtube/v3/docs/search/list#type
                     .setVideoType("any")//Allowed values: [any, episode, movie]
                     .setSafeSearch((Boolean) (feedProperties.get("config.safeSearch")) ? "strict" : "none")
-                    .setOrder("date")//Allowed values are: date/rating/relevance/title/viewCount
+                    .setOrder(getFeedPropertyAsString("config.order"))
                     .setFields("items(id/videoId,snippet/title,snippet/channelTitle,snippet/description,snippet/thumbnails/medium/url,snippet/thumbnails/high/url,snippet/channelId,snippet/publishedAt)")
                     //.setForMine(true);// To increase efficiency, only retrieve the fields that the application uses.
-                    .setMaxResults(20L)
+                    .setMaxResults(30L)
                     .execute()// Call the API and print results.
                     .getItems();
 
@@ -64,7 +64,7 @@ public class YoutubeConnector extends Connector<YoutubeValidator> {
                     .list(PART_PARAM + ",statistics")
                     .setKey(getAccountPropertyAsString("config.apiKey"))
                     .setId(videoIdMap.keySet().toString().substring(1, videoIdMap.keySet().toString().length() - 1).replace(" ", ""))
-                    .setMaxResults(20L)
+                    .setMaxResults(30L)
                     .setFields("items(id,statistics/viewCount,statistics/likeCount,statistics/dislikeCount,statistics/commentCount)")
                     .execute()// Call the API and print results.
                     .getItems();
