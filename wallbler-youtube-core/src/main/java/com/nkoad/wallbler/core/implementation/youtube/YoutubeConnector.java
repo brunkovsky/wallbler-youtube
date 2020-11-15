@@ -36,7 +36,7 @@ public class YoutubeConnector extends Connector<YoutubeValidator> {
                     .setType("video")// Restrict the search results to only include videos. See: https://developers.google.com/youtube/v3/docs/search/list#type
                     .setVideoType("any")//Allowed values: [any, episode, movie]
                     .setSafeSearch((Boolean) (feedProperties.get("config.safeSearch")) ? "strict" : "none")
-                    .setOrder("relevance")
+                    .setOrder("date")//Allowed values are: date/rating/relevance/title/viewCount
                     .setFields("items(id/videoId,snippet/title,snippet/channelTitle,snippet/description,snippet/thumbnails/medium/url,snippet/thumbnails/high/url,snippet/channelId,snippet/publishedAt)")
                     //.setForMine(true);// To increase efficiency, only retrieve the fields that the application uses.
                     .setMaxResults(20L)
