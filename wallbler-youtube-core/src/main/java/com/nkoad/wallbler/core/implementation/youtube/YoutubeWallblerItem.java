@@ -9,7 +9,6 @@ public class YoutubeWallblerItem extends WallblerItem {
     private BigInteger likedCount;
     private BigInteger viewCount;
     private BigInteger dislikeCount;
-    private BigInteger favoriteCount;
     private BigInteger commentsCount;
     private String thumbnailUrl;
     private String channelTitle;
@@ -41,14 +40,6 @@ public class YoutubeWallblerItem extends WallblerItem {
 
     public void setDislikeCount(BigInteger dislikeCount) {
         this.dislikeCount = dislikeCount;
-    }
-
-    public BigInteger getFavoriteCount() {
-        return favoriteCount;
-    }
-
-    public void setFavoriteCount(BigInteger favoriteCount) {
-        this.favoriteCount = favoriteCount;
     }
 
     public BigInteger getCommentsCount() {

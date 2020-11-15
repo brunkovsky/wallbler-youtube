@@ -63,9 +63,9 @@ public class YoutubeConnector extends Connector<YoutubeValidator> {
             List<Video> videoInfoList = validator.youtube.videos()
                     .list(PART_PARAM + ",statistics")
                     .setKey(getAccountPropertyAsString("config.apiKey"))
-                    .setId(videoIdMap.keySet().toString().substring(1, videoIdMap.keySet().toString().length() - 1))
+                    .setId(videoIdMap.keySet().toString().substring(1, videoIdMap.keySet().toString().length() - 1).replace(" ", ""))
                     .setMaxResults(20L)
-                    .setFields("items(id,statistics/viewCount,statistics/likeCount,statistics/dislikeCount,statistics/favoriteCount,statistics/commentCount)")
+                    .setFields("items(id,statistics/viewCount,statistics/likeCount,statistics/dislikeCount,statistics/commentCount)")
                     .execute()// Call the API and print results.
                     .getItems();
 
@@ -76,7 +76,6 @@ public class YoutubeConnector extends Connector<YoutubeValidator> {
                 if (null != likeCount)
                     youtubeMediaItem.setLikedCount(likeCount);
                 youtubeMediaItem.setDislikeCount(item.getStatistics().getDislikeCount());
-                youtubeMediaItem.setFavoriteCount(item.getStatistics().getFavoriteCount());
                 BigInteger commentCount = item.getStatistics().getCommentCount();
                 if (null != commentCount)
                     youtubeMediaItem.setCommentsCount(commentCount);
