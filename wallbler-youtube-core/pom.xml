@@ -71,7 +71,6 @@
                             com.google.api.client.util.*,
                             com.google.appengine.api,
                             com.google.apphosting.api,
-                            org.apache.commons.lang.*,
                             org.apache.http,
                             org.apache.http.*,
                             org.apache.commons.codec.binary,
