@@ -46,8 +46,10 @@ public class YoutubeConnector extends Connector<YoutubeValidator> {
             Set<WallblerItem> dataMediaItemList = new HashSet<>();
             Map<String, YoutubeWallblerItem> videoIdMap = new HashMap<>();
 
+            Date lastRefreshDate = new Date();
             searchResultList.forEach(item -> {
                 YoutubeWallblerItem youtubeMediaItem = new YoutubeWallblerItem(feedProperties);
+                youtubeMediaItem.setLastRefreshDate(lastRefreshDate);
                 youtubeMediaItem.setTitle(item.getSnippet().getTitle());
                 youtubeMediaItem.setDescription(item.getSnippet().getDescription());
                 youtubeMediaItem.setLinkToSMPage(YT_PUBLIC_URL + YT_VIDEO + item.getId().getVideoId());
